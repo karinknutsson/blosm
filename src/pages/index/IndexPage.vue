@@ -1,5 +1,5 @@
 <template>
-  <router-view />
+  <h1>Welcome to Blosm!</h1>
 </template>
 
 <script setup lang="ts"></script>
