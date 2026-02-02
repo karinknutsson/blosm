@@ -1,4 +1,13 @@
 @use "./fonts";
+@import "primeicons/primeicons.css";
+
+html {
+  background: #fefefe;
+}
+
+html.dark {
+  background: #121212;
+}
 
 body {
   font-family: "SourceSans3", sans-serif;
