@@ -1,9 +1,9 @@
 <template>
-  <div ref="wordsContainer" class="flex column words-container">
+  <div ref="wordsContainer" class="flex-center words-container">
     <div class="flex column words-content">
       <span
         class="hero"
-        v-for="(word, index) in heroTextDataStart.words"
+        v-for="(word, index) in currentSentence.words"
         :key="index"
         :id="`word${index}`"
       >
@@ -17,12 +17,14 @@
 import { onMounted, ref } from "vue";
 import gsap from "gsap";
 import { heroTextDataStart, heroTextDataEnd } from "../data/hero-text";
+import type { HeroSentence } from "@/types/hero-sentence.interface";
 
 /**
  * Component properties
  */
 // refs
 const wordsContainer = ref<HTMLElement | null>(null);
+const currentSentence = ref<HeroSentence>(heroTextDataStart);
 
 /**
  * Lifecycle hooks
@@ -30,7 +32,7 @@ const wordsContainer = ref<HTMLElement | null>(null);
 onMounted(() => {
   hideText();
   moveWords();
-  fadeInWords();
+  fadeInWords(heroTextDataStart);
 });
 
 /**
@@ -45,53 +47,65 @@ function hideText() {
 }
 
 function moveWords() {
-  if (wordsContainer.value && heroTextDataStart.words) {
-    for (let i = 0; i < heroTextDataStart.words.length; i++) {
-      // gsap.set(`#word${i}`, {
-      //   x: `${heroTextDataStart.words[i]!.moveX}px`,
-      //   y: `${heroTextDataStart.words[i]!.moveY}px`,
-      // });
+  if (wordsContainer.value) {
+    for (let i = 0; i < currentSentence.value.words.length; i++) {
       gsap.set(`#word${i}`, {
-        x: heroTextDataStart.words[i]!.moveX,
-        y: heroTextDataStart.words[i]!.moveY,
+        x: currentSentence.value.words[i]!.moveX,
+        y: currentSentence.value.words[i]!.moveY,
       });
     }
   }
 }
 
-function fadeInWords() {
+function fadeInWords(sentence: HeroSentence) {
   const initialDelay = 1.2;
   const duration = 0.6;
 
-  if (heroTextDataStart.words) {
-    for (let i = 0; i < heroTextDataStart.words.length; i++) {
-      gsap.to(`#word${i}`, {
-        opacity: 1,
-        duration: duration,
-        delay: initialDelay + duration * i - duration / 2,
-        ease: "circ.in",
-      });
-    }
+  for (let i = 0; i < sentence.words.length; i++) {
+    gsap.to(`#word${i}`, {
+      opacity: 1,
+      duration: duration,
+      delay: initialDelay + duration * i - duration / 2,
+      ease: "circ.in",
+      onComplete: () => {
+        if (sentence.words[i] === heroTextDataStart.words[heroTextDataStart.words.length - 1]) {
+          fadeOutWords();
+        }
+      },
+    });
+  }
+}
+
+function fadeOutWords() {
+  const delay = 2;
+  const duration = 0.6;
+
+  for (let i = 0; i < heroTextDataStart.words.length; i++) {
+    gsap.to(`#word${i}`, {
+      opacity: 0,
+      duration: duration,
+      delay: delay,
+      ease: "circ.out",
+      onComplete: () => {
+        if (i === heroTextDataStart.words.length - 1) {
+          currentSentence.value = heroTextDataEnd;
+          moveWords();
+          fadeInWords(heroTextDataEnd);
+        }
+      },
+    });
   }
 }
 </script>
 
 <style scoped lang="scss">
 .words-container {
-  align-items: center;
-  justify-content: center;
-  //   width: 640px;
-  //   height: 640px;
   position: relative;
-  // border: 1px dotted red;
 }
 
 .words-content {
   gap: 32px;
-  //   width: 640px;
-  //   height: 640px;
   z-index: 100;
-  // border: 1px dotted magenta;
 }
 
 .hero {
