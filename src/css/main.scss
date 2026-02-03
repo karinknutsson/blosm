@@ -1,0 +1,39 @@
+@use "./fonts";
+@import "primeicons/primeicons.css";
+
+html {
+  background: #fffefd;
+}
+
+html.dark {
+  background: #121212;
+}
+
+body {
+  font-family: "SourceSans3", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "AbrilFatface", serif;
+  font-size: 4rem;
+}
+
+.container {
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
