@@ -1,16 +1,6 @@
 @use "./fonts";
 @import "primeicons/primeicons.css";
 
-// :root {
-//   --p-button-primary-background: magenta;
-//   --p-button-primary-bordercolor: #0f0f0f;
-// }
-
-// html.dark {
-//   --p-button-primary-background: cyan;
-//   --p-button-primary-bordercolor: #ffffff;
-// }
-
 html {
   background: #fefefe;
 }
@@ -26,6 +16,16 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "SourceSerif4", serif;
-  font-weight: 900;
+  font-family: "AbrilFatface", serif;
+  font-size: 4rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

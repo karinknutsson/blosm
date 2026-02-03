@@ -19,6 +19,8 @@
     "@primeuix/themes": "^2.0.3",
     "@primevue/themes": "^4.5.4",
     "@vueuse/core": "^14.2.0",
+    "bootstrap": "^5.3.8",
+    "gsap": "^3.14.2",
     "pinia": "^3.0.4",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
