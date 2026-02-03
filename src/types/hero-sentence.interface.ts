@@ -1,7 +1,7 @@
 export interface HeroWord {
   text: string;
-  moveX: number;
-  moveY: number;
+  moveX: string;
+  moveY: string;
 }
 
 export interface HeroSentence {
