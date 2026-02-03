@@ -2,7 +2,7 @@
 @import "primeicons/primeicons.css";
 
 html {
-  background: #fefefe;
+  background: #fffefd;
 }
 
 html.dark {
@@ -20,8 +20,16 @@ h3 {
   font-size: 4rem;
 }
 
+.container {
+  height: 100vh;
+}
+
 .flex {
   display: flex;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .flex-center {

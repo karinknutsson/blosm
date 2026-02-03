@@ -8,6 +8,7 @@ import Nora from "@primeuix/themes/nora";
 import Aura from "@primeuix/themes/aura";
 import { definePreset } from "@primevue/themes";
 import "./css/main.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const NeutralNora = definePreset(Nora, {
   semantic: {

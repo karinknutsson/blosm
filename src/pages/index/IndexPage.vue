@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <h1>Find your hidden treasures. Let your style Blosm</h1>
-    <p>Some text will be written here.</p>
-  </div>
-
-  <div>
-    <h1 class="source">Find your hidden treasures. Let your style Blosm</h1>
-    <p class="source">Some text will be written here.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-0 col-sm-1 col-md-2 col-lg-3"></div>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+        <div class="hero-container flex-center">
+          <AnimatedHeroText />
+        </div>
+      </div>
+      <div class="col-0 col-sm-1 col-md-2 col-lg-3"></div>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AnimatedHeroText from "@/components/AnimatedHeroText.vue";
+</script>
 
-<style scoped></style>
+<style scoped>
+.hero-container {
+  height: 100vh;
+  padding-bottom: 4vh;
+}
+</style>
